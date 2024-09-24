@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_note_app_hive/Core/Common/CustomTextField/custom_text_field.dart';
 import 'package:flutter_note_app_hive/Core/Common/space.dart';
 import 'package:flutter_note_app_hive/Core/app_export.dart';
+import 'package:flutter_note_app_hive/Features/Home/Screens/note_list_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 
 import '../../../Models/note_model.dart';
 
-class NoteEditScreen extends StatefulWidget {
+class NoteEditScreen extends ConsumerStatefulWidget {
   final Note? note;
 
   NoteEditScreen({this.note});
@@ -16,7 +18,7 @@ class NoteEditScreen extends StatefulWidget {
   _NoteEditScreenState createState() => _NoteEditScreenState();
 }
 
-class _NoteEditScreenState extends State<NoteEditScreen> {
+class _NoteEditScreenState extends ConsumerState<NoteEditScreen> {
   late TextEditingController _titleController;
   late TextEditingController _contentController;
 
@@ -42,11 +44,19 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
     if (title.isNotEmpty || content.isNotEmpty) {
       final notesBox = Hive.box<Note>('notes');
       if (widget.note == null) {
-        notesBox.add(Note(
-          title: title,
-          content: content,
+        final noteValue = Note(
+          title: _titleController.text,
+          content: _contentController.text,
           createdAt: DateTime.now(),
-        ));
+        );
+        notesBox.add(noteValue);
+        ref.read(noteList.notifier).update(
+          (state) {
+            final res = state;
+            res.add(noteValue);
+            return res;
+          },
+        );
       } else {
         widget.note!.title = title;
         widget.note!.content = content;
@@ -61,7 +71,10 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.note == null ? 'New Note' : 'Edit Note'),
+        title: Text(
+          widget.note == null ? 'New Note' : 'Edit Note',
+          style: GoogleFonts.poppins(),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: appTheme.mainGreen,
@@ -74,6 +87,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
         padding: EdgeInsets.only(right: 8.0.h, left: 8.0.h),
         child: Column(
           children: [
+            space(),
             CustomTextField(controller: _titleController, label: "Title"),
             space(h: 30.v),
             // // CustomTextField(
@@ -85,6 +99,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
               child: TextFormField(
                   expands: true,
                   maxLines: null,
+                  controller: _contentController,
                   textAlignVertical: TextAlignVertical.top,
                   decoration: InputDecoration(
                     hintText: "Content",

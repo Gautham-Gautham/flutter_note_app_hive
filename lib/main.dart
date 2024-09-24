@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_note_app_hive/Features/Authentication/Screens/login.dart';
 import 'package:flutter_note_app_hive/Features/Home/Screens/note_list_screen.dart';
+import 'package:flutter_note_app_hive/splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:hive_flutter/adapters.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         theme:
             ThemeData(primarySwatch: Colors.blue, brightness: Brightness.dark),
         // home: NoteListScreen(),
-        home: LoginScreen(),
+        home: SplashScreen(),
       );
     });
   }

@@ -50,19 +50,22 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAHpQKDZZ_UPnsAo45-WDtB6MPqkqKeh7c',
-    appId: '1:259339593789:android:9ab86fac9a1cffa21b6254',
-    messagingSenderId: '259339593789',
-    projectId: 'contactdetails-59c2e',
-    storageBucket: 'contactdetails-59c2e.appspot.com',
+    apiKey: 'AIzaSyBovUDMHkKlfPU2of32XRi6Zsc4lOHohfI',
+    appId: '1:585301765096:android:1b70b8d5b58c78df28525d',
+    messagingSenderId: '585301765096',
+    projectId: 'booking-15f1b',
+    storageBucket: 'booking-15f1b.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC9CxCxJSv8m7J3mYOq_9sN9AeKEhjWEjM',
-    appId: '1:259339593789:ios:27660364269d43721b6254',
-    messagingSenderId: '259339593789',
-    projectId: 'contactdetails-59c2e',
-    storageBucket: 'contactdetails-59c2e.appspot.com',
+    apiKey: 'AIzaSyCpswQSKuokbeBS6qw2VAC4uKVUL1zSxDg',
+    appId: '1:585301765096:ios:c95d066cd790652928525d',
+    messagingSenderId: '585301765096',
+    projectId: 'booking-15f1b',
+    storageBucket: 'booking-15f1b.appspot.com',
+    androidClientId: '585301765096-lep2lr0pgpb2lfgqrlqqa3nb68vfup8c.apps.googleusercontent.com',
+    iosClientId: '585301765096-pglp434ies2hs18us6dokb082rmtra0f.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterNoteAppHive',
   );
+
 }

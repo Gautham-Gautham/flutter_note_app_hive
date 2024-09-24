@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_note_app_hive/Core/Common/CustomElevatedButton/custom_elevated_button.dart';
 import 'package:flutter_note_app_hive/Core/Common/CustomTextField/custom_text_field.dart';
 import 'package:flutter_note_app_hive/Core/Common/space.dart';
 import 'package:flutter_note_app_hive/Core/app_export.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Core/Theme/new_custom_text_style.dart';
 import '../../Home/Screens/note_list_screen.dart';
@@ -23,26 +25,26 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
+      appBar: AppBar(
+          title: Text(
+        'Login',
+        style: GoogleFonts.poppins(),
+      )),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomTextField(
-                controller: _phoneController, label: "Phone Number"),
-            // TextField(
-            //   controller: _phoneController,
-            //   decoration: InputDecoration(labelText: 'Phone Number'),
-            //   keyboardType: TextInputType.phone,
-            // ),
+                controller: _phoneController,
+                maxLength: 10,
+                label: "Phone Number"),
             space(),
             if (_codeSent)
               CustomTextField(
                   keyboardType: TextInputType.number,
                   controller: _otpController,
                   label: "OTP"),
-
             space(),
             CustomElevatedButton(
                 onPressed: _codeSent ? _verifyOTP : _sendOTP,
@@ -64,10 +66,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   // You can add more styling properties here, such as padding, elevation, etc.
                 )),
-            // ElevatedButton(
-            //   onPressed: _codeSent ? _verifyOTP : _sendOTP,
-            //   child: Text(_codeSent ? 'Verify OTP' : 'Send OTP'),
-            // ),
           ],
         ),
       ),
@@ -84,7 +82,9 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       },
       verificationFailed: (FirebaseAuthException e) {
-        print(e.message);
+        if (kDebugMode) {
+          print(e.message);
+        }
         // Show error message to user
       },
       codeSent: (String verificationId, int? resendToken) {
@@ -114,7 +114,6 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     } catch (e) {
       print(e);
-      // Show error message to user
     }
   }
 }

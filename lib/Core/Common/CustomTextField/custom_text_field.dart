@@ -9,7 +9,7 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
   final TextInputType? keyboardType;
   final int? maxLength;
-  final Icon? prefixIcon;
+  final Widget? prefixIcon;
   final List<TextInputFormatter>? inputFormatter;
   final TextInputAction? action;
   final FocusNode? focusNode;
