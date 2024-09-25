@@ -17,14 +17,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   Future<void> keepLogin() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final ligin = prefs.getString("key") ?? "";
+    final ligin = prefs.getString("uid") ?? "";
     if (ligin != "") {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => NoteListScreen()),
+        MaterialPageRoute(builder: (context) => const NoteListScreen()),
       );
     } else {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => NoteListScreen()),
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
       );
     }
   }

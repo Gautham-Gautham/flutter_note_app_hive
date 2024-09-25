@@ -20,7 +20,7 @@ class CustomPoppinsTextStyles {
       fontSize: 18.fSize);
   static final TextStyle bodyText1 = GoogleFonts.poppins(
       // fontFamily: marine,
-      color: appTheme.black900,
+      color: appTheme.whiteA700,
       fontWeight: FontWeight.w500,
       fontSize: 20.fSize);
   static final TextStyle bodyText1White = GoogleFonts.poppins(
@@ -50,7 +50,7 @@ class CustomPoppinsTextStyles {
       fontSize: 15.fSize);
 
   static final TextStyle bodyMedium = GoogleFonts.poppins(
-      color: appTheme.black900,
+      color: appTheme.whiteA700,
       fontWeight: FontWeight.w500,
       fontSize: 14.fSize);
   static final TextStyle bodyMediumRed = GoogleFonts.poppins(
